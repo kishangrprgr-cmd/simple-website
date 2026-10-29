@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nexora creates modern digital experiences, websites and AI solutions.">
+    <title>Nexora | Build What's Next</title>
+
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        :root {
+            --bg: #080b14;
+            --card: #111629;
+            --purple: #9b7bff;
+            --cyan: #5de4ff;
+            --white: #f5f7ff;
+            --muted: #a4abc2;
+            --border: rgba(255,255,255,0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--white);
+            background:
+                radial-gradient(circle at 10% 10%, #211643 0, transparent 35%),
+                radial-gradient(circle at 90% 40%, #10273a 0, transparent 30%),
+                var(--bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button, input, textarea {
+            font: inherit;
+        }
+
+        .container {
+            width: min(1150px, 90%);
+            margin: auto;
+        }
+
+        .gradient {
+            background: linear-gradient(100deg, var(--purple), var(--cyan));
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* ===== NAVIGATION ===== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        header.scrolled {
+            background: rgba(8, 11, 20, 0.92);
+            backdrop-filter: blur(18px);
+            border-color: var(--border);
+        }
+
+        nav {
+            min-height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 27px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 21px;
+            border-radius: 10px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            color: #080b14;
+            background: linear-gradient(110deg, var(--cyan), #b3a0ff);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px #5de4ff35;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            color: white;
+            background: rgba(255,255,255,0.04);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--cyan);
+        }
+
+        .menu-btn {
+            display: none;
+            color: white;
+            border: 1px solid var(--border);
+            background: var(--card);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 130px 0 80px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 55px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 14px;
+            color: var(--cyan);
+            background: #5de4ff12;
+            border: 1px solid #5de4ff35;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: clamp(42px, 6vw, 75px);
+            line-height: 1.05;
+            letter-spacing: -3px;
+            margin: 25px 0;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 17px;
+            max-width: 550px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 430px;
+        }
+
+        .orb {
+            position: absolute;
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #9b7bff30, #5de4ff12);
+            border: 1px solid #ffffff18;
+            box-shadow: 0 0 90px #9b7bff20;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .dashboard {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            background: rgba(17, 22, 41, 0.92);
+            backdrop-filter: blur(20px);
+            border-radius: 23px;
+            box-shadow: 0 25px 70px #0007;
+            transform: rotate(-2deg);
+        }
+
+        .dash-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .live {
+            color: #70efbd;
+            font-size: 11px;
+        }
+
+        .metric {
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: #ffffff06;
+        }
+
+        .metric small {
+            color: var(--muted);
+        }
+
+        .metric h2 {
+            font-size: 42px;
+            margin: 8px 0;
+        }
+
+        .chart {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+        }
+
+        .dash-bottom {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .mini {
+            background: #ffffff08;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .mini strong {
+            display: block;
+            font-size: 22px;
+        }
+
+        .mini small {
+            color: var(--muted);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        /* ===== GENERAL SECTIONS ===== */
+        section:not(.hero) {
+            padding: 90px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .eyebrow {
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        h2.section-title {
+            font-size: clamp(32px, 4vw, 48px);
+            line-height: 1.2;
+            letter-spacing: -1.5px;
+            margin: 15px 0;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+        }
+
+        /* ===== SERVICES ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            padding: 28px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: #9b7bff90;
+            background: #ffffff09;
+        }
+
+        .service-icon {
+            width: 55px;
+            height: 55px;
+            display: grid;
+            place-items: center;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #9b7bff30, #5de4ff20);
+            font-size: 25px;
+            margin-bottom: 22px;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .learn-more {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--cyan);
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* ===== PORTFOLIO ===== */
+        .projects {
+            background: #ffffff03;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .project-card {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: #ffffff05;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #9b7bff80;
+        }
+
+        .project-art {
+            height: 240px;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle, #9b7bff45, #14172b 70%);
+            padding: 25px;
+        }
+
+        .project-art.blue {
+            background: radial-gradient(circle, #5de4ff35, #101b2c 70%);
+        }
+
+        .project-art.pink {
+            background: radial-gradient(circle, #ff79c635, #25162c 70%);
+        }
+
+        .project-art.green {
+            background: radial-gradient(circle, #65f2c235, #112722 70%);
+        }
+
+        .mockup {
+            width: 90%;
+            max-width: 330px;
+            padding: 15px;
+            background: #0c1020;
+            border: 1px solid #ffffff30;
+            border-radius: 13px;
+            box-shadow: 0 20px 45px #0006;
+            transform: rotate(-3deg);
+        }
+
+        .mockup-bar {
+            display: flex;
+            gap: 5px;
+            padding-bottom: 12px;
+        }
+
+        .mockup-bar span {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--purple);
+        }
+
+        .mockup-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .mock-block {
+            min-height: 90px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #9b7bff60, #5de4ff20);
+        }
+
+        .mock-lines {
+            display: grid;
+            align-content: start;
+            gap: 10px;
+        }
+
+        .mock-lines span {
+            height: 8px;
+            border-radius: 10px;
+            background: #ffffff20;
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            border: 1px solid var(--border);
+            color: var(--muted);
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 11px;
+        }
+
+        .project-info p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        /* ===== ABOUT AND STATS ===== */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 40px 20px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: linear-gradient(120deg, #9b7bff10, #5de4ff08);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: clamp(30px, 4vw, 45px);
+            letter-spacing: -1px;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .testimonial {
+            padding: 25px;
+            background: #ffffff05;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+        }
+
+        .stars {
+            color: #ffd479;
+            letter-spacing: 3px;
+        }
+
+        .testimonial blockquote {
+            margin: 18px 0 25px;
+            color: #d7dced;
+            font-size: 14px;
+        }
+
+        .person {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .person-avatar {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: #080b14;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--purple), var(--cyan));
+        }
+
+        .person small {
+            display: block;
+            color: var(--muted);
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 45px;
+            align-items: start;
+        }
+
+        .contact-copy p {
+            color: var(--muted);
+            margin: 18px 0;
+        }
+
+        .contact-detail {
+            margin-top: 20px;
+            color: #e0e5f7;
+        }
+
+        .contact-detail span {
+            color: var(--cyan);
+            margin-right: 10px;
+        }
+
+        .contact-form {
+            padding: 30px;
+            background: #ffffff06;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 13px;
+            color: #dce1f2;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 13px;
+            background: #080b14;
+            color: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 3px #5de4ff12;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-note {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* ===== CALL TO ACTION ===== */
+        .cta-box {
+            padding: 55px 25px;
+            text-align: center;
+            border-radius: 25px;
+            border: 1px solid #9b7bff40;
+            background: radial-gradient(ellipse at top, #9b7bff25, transparent 70%);
+        }
+
+        .cta-box p {
+            max-width: 570px;
+            color: var(--muted);
+            margin: 15px auto 25px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 28px 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a:hover {
+            color: var(--cyan);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                min-height: 400px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 5%;
+                width: 90%;
+                padding: 20px;
+                flex-direction: column;
+                gap: 0;
+                background: #0d1120;
+                border: 1px solid var(--border);
+                border-radius: 14px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 12px;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .services-grid,
+            .projects-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .hero-visual {
+                min-height: 350px;
+            }
+
+            .orb {
+                width: 280px;
+                height: 280px;
+            }
+
+            .dashboard {
+                padding: 17px;
+            }
+
+            section:not(.hero) {
+                padding: 65px 0;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header id="header">
+        <nav class="container">
+            <a href="#home" class="logo">nexora<span>.</span></a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#work">Our Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <a href="#contact" class="btn btn-primary nav-cta">Let's Talk ↗</a>
+            <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation"
+                    aria-expanded="false">☰</button>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+
+                <div class="reveal">
+                    <span class="badge">✦ INNOVATION STARTS HERE</span>
+
+                    <h1>
+                        We build digital experiences
+                        <span class="gradient">that move you forward.</span>
+                    </h1>
+
+                    <p>
+                        We combine creative design, modern technology and smart
+                        strategy to help businesses grow, innovate and stand out
+                        in a digital-first world.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#work" class="btn btn-primary">Explore Our Work ↗</a>
+                        <a href="#services" class="btn btn-outline">Discover Services →</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual reveal">
+                    <div class="orb"></div>
+
+                    <div class="dashboard">
+                        <div class="dash-top">
+                            <span>Growth Overview</span>
+                            <span class="live">● LIVE</span>
+                        </div>
+
+                        <div class="metric">
+                            <small>Digital Performance</small>
+                            <h2 class="gradient">+248%</h2>
+                            <small>↗ Illustrative growth metric</small>
+
+                            <svg class="chart" viewBox="0 0 340 100"
+                                 role="img" aria-label="Illustrative rising performance graph">
+                                <defs>
+                                    <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#9b7bff" stop-opacity=".5"/>
+                                        <stop offset="100%" stop-color="#9b7bff" stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <path d="M0 85 Q30 80 50 60 T100 68 T155 42 T210 48 T270 18 T340 8 L340 100 L0 100 Z"
+                                      fill="url(#chartFill)"/>
+
+                                <path d="M0 85 Q30 80 50 60 T100 68 T155 42 T210 48 T270 18 T340 8"
+                                      fill="none" stroke="#9b7bff"
+                                      stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+
+                        <div class="dash-bottom">
+                            <div class="mini">
+                                <strong>4.8x</strong>
+                                <small>Growth potential</small>
+                            </div>
+
+                            <div class="mini">
+                                <strong>92%</strong>
+                                <small>Client satisfaction</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TRUSTED BY -->
+        <section style="padding:25px 0;border-block:1px solid var(--border);">
+            <div class="container" style="text-align:center;">
+                <p style="color:var(--muted);font-size:13px;margin-bottom:20px;">
+                    A DIGITAL PARTNER FOR AMBITIOUS TEAMS
+                </p>
+
+                <div style="display:flex;justify-content:space-around;gap:20px;flex-wrap:wrap;">
+                    <strong>ORBIT ●</strong>
+                    <strong>NORTHSTAR</strong>
+                    <strong>vertex_</strong>
+                    <strong>CLOUDLINE</strong>
+                    <strong>FORM & FIELD</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="services">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <span class="eyebrow">Our Services</span>
+                    <h2 class="section-title">
+                        Creative thinking.<br>
+                        <span class="gradient">Powerful technology.</span>
+                    </h2>
+                    <p>
+                        Everything your business needs to build a strong digital
+                        presence and deliver better customer experiences.
+                    </p>
+                </div>
+
+                <div class="services-grid">
+
+                    <article class="service-card reveal">
+                        <div class="service-icon">✳</div>
+                        <h3>Branding & Strategy</h3>
+                        <p>
+                            Create a memorable brand identity with meaningful
+                            positioning, design systems and clear messaging.
+                        </p>
+                        <a href="#contact" class="learn-more">Learn More →</a>
+                    </article>
+
+                    <article class="service-card reveal">
+                        <div class="service-icon">◈</div>
+                        <h3>Web Development</h3>
+                        <p>
+                            Build fast, secure, responsive websites and web
+                            applications tailored to your business goals.
+                        </p>
+                        <a href="#contact" class="learn-more">Learn More →</a>
+                    </article>
+
+                    <article class="service-card reveal">
+                        <div class="service-icon">⌘</div>
+                        <h3>AI & Automation</h3>
+                        <p>
+                            Use artificial intelligence and workflow automation
+                            to simplify tasks and improve efficiency.
+                        </p>
+                        <a href="#contact" class="learn-more">Learn More →</a>
+                    </article>
+
+                    <article class="service-card reveal">
+                        <div class="service-icon">▧</div>
+                        <h3>UI/UX Design</h3>
+                        <p>
+                            Design intuitive digital products with accessible
+                            interfaces and user-focused experiences.
+                        </p>
+                        <a href="#contact" class="learn-more">Learn More →</a>
+                    </article>
+
+                    <article class="service-card reveal">
+                        <div class="service-icon">↗</div>
+                        <h3>Digital Marketing</h3>
+                        <p>
+                            Reach your audience through digital campaigns,
+                            content strategy and conversion optimization.
+                        </p>
+                        <a href="#contact" class="learn-more">Learn More →</a>
+                    </article>
+
+                    <article class="service-card reveal">
+                        <div class="service-icon">⚙</div>
+                        <h3>Cloud Solutions</h3>
+                        <p>
+                            Build scalable digital systems with cloud services,
+                            integrations and reliable software architecture.
+                        </p>
+                        <a href="#contact" class="learn-more">Learn More →</a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO -->
+        <section class="projects" id="work">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <span class="eyebrow">Selected Projects</span>
+                    <h2 class="section-title">
+                        Ideas transformed into
+                        <span class="gradient">experiences.</span>
+                    </h2>
+                    <p>
+                        Explore sample concepts that demonstrate our approach
+                        to design, technology and digital problem-solving.
+                    </p>
+                </div>
+
+                <div class="projects-grid">
+
+                    <article class="project-card reveal">
+                        <div class="project-art">
+                            <div class="mockup">
+                                <div class="mockup-bar">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="mockup-content">
+                                    <div class="mock-block"></div>
+                                    <div class="mock-lines">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="tags">
+                                <span class="tag">Branding</span>
+                                <span class="tag">Web Design</span>
+                            </div>
+                            <h3>Orbit — Productivity Platform</h3>
+                            <p>
+                                A modern digital identity and intuitive website
+                                concept for a productivity platform.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-art blue">
+                            <div class="mockup">
+                                <div class="mockup-bar">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="mockup-content">
+                                    <div class="mock-lines">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                    <div class="mock-block"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="tags">
+                                <span class="tag">UI/UX</span>
+                                <span class="tag">Analytics</span>
+                            </div>
+                            <h3>Northstar — Smart Analytics</h3>
+                            <p>
+                                A dashboard concept that makes business data
+                                easier to explore and understand.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-art pink">
+                            <div class="mockup">
+                                <div class="mockup-bar">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="mockup-content">
+                                    <div class="mock-block"></div>
+                                    <div class="mock-lines">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="tags">
+                                <span class="tag">E-commerce</span>
+                                <span class="tag">Development</span>
+                            </div>
+                            <h3>Form & Field — Online Store</h3>
+                            <p>
+                                A clean storefront concept designed to make
+                                product discovery simple and engaging.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-art green">
+                            <div class="mockup">
+                                <div class="mockup-bar">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="mockup-content">
+                                    <div class="mock-lines">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                    <div class="mock-block"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="tags">
+                                <span class="tag">AI</span>
+                                <span class="tag">Automation</span>
+                            </div>
+                            <h3>Cloudline — Smart Workflows</h3>
+                            <p>
+                                An automation concept designed to reduce
+                                repetitive work and streamline operations.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <span class="eyebrow">About Nexora</span>
+                    <h2 class="section-title">
+                        Your vision.<br>
+                        <span class="gradient">Our shared mission.</span>
+                    </h2>
+                    <p>
+                        We believe the best digital solutions come from
+                        combining creativity, collaboration and technology.
+                        Our focus is to help businesses solve real problems
+                        and create meaningful digital experiences.
+                    </p>
+                </div>
+
+                <div class="stats reveal">
+                    <div class="stat">
+                        <strong data-count="40" data-suffix="+">0</strong>
+                        <span>Concepts Delivered</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong data-count="18" data-suffix="">0</strong>
+                        <span>Industries Explored</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong data-count="96" data-suffix="%">0</strong>
+                        <span>Client Satisfaction</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong data-count="12" data-suffix="">0</strong>
+                        <span>Creative Minds</span>
+                    </div>
+                </div>
+
+                <p class="form-note" style="text-align:center;margin-top:15px;">
+                    Replace sample statistics with your company's verified figures.
+                </p>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section id="testimonials">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <span class="eyebrow">Testimonials</span>
+                    <h2 class="section-title">
+                        Built on trust.<br>
+                        <span class="gradient">Driven by results.</span>
+                    </h2>
+                    <p>
+                        Strong partnerships begin with understanding your
+                        goals and working together to achieve them.
+                    </p>
+                </div>
+
+                <div class="testimonials-grid">
+
+                    <article class="testimonial reveal">
+                        <div class="stars">★★★★★</div>
+                        <blockquote>
+                            “The team helped turn our early idea into a
+                            clear digital concept. The entire process was
+                            collaborative and thoughtfully executed.”
+                        </blockquote>
+                        <div class="person">
+                            <div class="person-avatar">SR</div>
+                            <div>
+                                <strong>Sam Rivera</strong>
+                                <small>Founder, Orbit Studio</small>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial reveal">
+                        <div class="stars">★★★★★</div>
+                        <blockquote>
+                            “Their attention to design and user experience
+                            helped us rethink how our customers interact
+                            with our digital products.”
+                        </blockquote>
+                        <div class="person">
+                            <div class="person-avatar">AK</div>
+                            <div>
+                                <strong>Alex Kim</strong>
+                                <small>Product Lead, Northstar</small>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial reveal">
+                        <div class="stars">★★★★★</div>
+                        <blockquote>
+                            “A thoughtful approach to technology, clear
+                            communication and a strong focus on solving
+                            the right problems.”
+                        </blockquote>
+                        <div class="person">
+                            <div class="person-avatar">JP</div>
+                            <div>
+                                <strong>Jordan Patel</strong>
+                                <small>Director, Cloudline</small>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <p class="form-note" style="margin-top:15px;">
+                    The testimonials above are placeholders. Replace them
+                    with genuine client feedback before publishing.
+                </p>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="container contact-grid">
+
+                <div class="contact-copy reveal">
+                    <span class="eyebrow">Get In Touch</span>
+
+                    <h2 class="section-title">
+                        Let's create something
+                        <span class="gradient">remarkable.</span>
+                    </h2>
+
+                    <p>
+                        Have a project in mind? Tell us about your goals.
+                        We'd love to explore how we can help your business
+                        grow through design and technology.
+                    </p>
+
+                    <div class="contact-detail">
+                        <span>✉</span>
+                        <strong>Email:</strong> hello@yourcompany.com
+                    </div>
+
+                    <div class="contact-detail">
+                        <span>⌖</span>
+                        <strong>Location:</strong> Bengaluru, India
+                    </div>
+
+                    <div class="contact-detail">
+                        <span>◷</span>
+                        <strong>Availability:</strong> Monday–Friday
+                    </div>
+                </div>
+
+                <div class="contact-form reveal">
+                    <form id="contactForm">
+                        <div class="form-grid">
+
+                            <div class="field">
+                                <label for="name">Full Name *</label>
+                                <input id="name" name="name" required
+                                       placeholder="Your name">
+                            </div>
+
+                            <div class="field">
+                                <label for="email">Email Address *</label>
+                                <input id="email" name="email" type="email"
+                                       required placeholder="you@example.com">
+                            </div>
+
+                            <div class="field full">
+                                <label for="company">Company Name</label>
+                                <input id="company" name="company"
+                                       placeholder="Your company">
+                            </div>
+
+                            <div class="field full">
+                                <label for="service">Service Interested In</label>
+                                <input id="service" name="service"
+                                       placeholder="Web development, AI, design...">
+                            </div>
+
+                            <div class="field full">
+                                <label for="message">Project Details *</label>
+                                <textarea id="message" name="message" required
+                                          placeholder="Tell us about your project..."></textarea>
+                            </div>
+
+                            <div class="field full">
+                                <button type="submit" class="btn btn-primary">
+                                    Prepare Email ↗
+                                </button>
+                                <p class="form-note">
+                                    This demo prepares an email in your email
+                                    application. It does not store submissions.
+                                </p>
+                                <p id="formStatus" role="status"
+                                   style="color:var(--cyan);font-size:13px;"></p>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section>
+            <div class="container">
+                <div class="cta-box reveal">
+                    <span class="eyebrow">Your Next Chapter</span>
+
+                    <h2 class="section-title">
+                        Ready to turn your idea into
+                        <span class="gradient">reality?</span>
+                    </h2>
+
+                    <p>
+                        Let's work together to create digital experiences
+                        that make a difference.
+                    </p>
+
+                    <a href="#contact" class="btn btn-primary">
+                        Start a Conversation ↗
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-inner">
+            <a href="#home" class="logo">nexora<span>.</span></a>
+
+            <p>© <span id="year"></span> Nexora. All rights reserved.</p>
+
+            <div class="footer-links">
+                <a href="#services">Services</a>
+                <a href="#work">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Update the copyright year automatically.
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        // Add background to the navigation when scrolling.
+        const header = document.getElementById("header");
+
+        function updateHeader() {
+            header.classList.toggle("scrolled", window.scrollY > 20);
+        }
+
+        window.addEventListener("scroll", updateHeader, { passive: true });
+        updateHeader();
+
+        // Mobile navigation menu.
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuBtn.textContent = isOpen ? "✕" : "☰";
+            menuBtn.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        // Close the mobile menu after clicking a navigation link.
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("open");
+                menuBtn.textContent = "☰";
+                menuBtn.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        // Reveal elements when they enter the viewport.
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window) {
+            const revealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            revealElements.forEach(function (element) {
+                revealObserver.observe(element);
+            });
+        } else {
+            revealElements.forEach(function (element) {
+                element.classList.add("visible");
+            });
+        }
+
+        // Animate the statistics counters.
+        const counters = document.querySelectorAll("[data-count]");
+
+        function animateCounter(element) {
+            const target = Number(element.dataset.count);
+            const suffix = element.dataset.suffix || "";
+            const duration = 1200;
+            const startTime = performance.now();
+
+            function updateCounter(currentTime) {
+                const progress = Math.min(
+                    (currentTime - startTime) / duration, 1
+                );
+
+                const eased = 1 - Math.pow(1 - progress, 3);
+                element.textContent =
+                    Math.round(target * eased) + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+
+            requestAnimationFrame(updateCounter);
+        }
+
+        if ("IntersectionObserver" in window) {
+            const counterObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(function (counter) {
+                counterObserver.observe(counter);
+            });
+        } else {
+            counters.forEach(animateCounter);
+        }
+
+        // Contact form: prepare an email using the visitor's email app.
+        document.getElementById("contactForm").addEventListener(
+            "submit", function (event) {
+                event.preventDefault();
+
+                const form = event.currentTarget;
+
+                if (!form.reportValidity()) {
+                    return;
+                }
+
+                const data = new FormData(form);
+
+                const subject = encodeURIComponent(
+                    "Website enquiry from " + data.get("name")
+                );
+
+                const body = encodeURIComponent(
+                    "Name: " + data.get("name") + "\n" +
+                    "Email: " + data.get("email") + "\n" +
+                    "Company: " + (data.get("company") || "Not provided") + "\n" +
+                    "Service: " + (data.get("service") || "Not specified") +
+                    "\n\nProject details:\n" + data.get("message")
+                );
+
+                document.getElementById("formStatus").textContent =
+                    "Opening your email application...";
+
+                window.location.href =
+                    "mailto:hello@yourcompany.com?subject=" +
+                    subject + "&body=" + body;
+            }
+        );
+    </script>
+
+</body>
+</html>
